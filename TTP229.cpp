@@ -16,7 +16,7 @@ byte reverseBits(byte number) {
 
 uint16_t TTP229::readKeys() {
     _keys = 0;
-    Wire.requestFrom(_address, 2);
+    Wire.requestFrom(_address, (uint8_t) 2);
     byte *buffer = (byte*) &_keys;
     byte i = 0;
     while(Wire.available()) {       // slave may send less than requested
