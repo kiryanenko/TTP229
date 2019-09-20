@@ -25,10 +25,15 @@ Tested with the Robotdyn 16 Keys I2C Capacitive Touch TTP229 Module Robotdyn Cap
 
 - `uint16_t readKeys()` - Read data from TTP229 and return states of 16 keys 
   in bitmap representation. This method should call before other methods.
+  Put it into `loop` function.
 
 - `int getKey()` - Return number of pressed key or return `-1` if no one key is pressed.
 
-- `bool isKeyPressed(byte key)` - Return true if key is pressed.
+- `bool isKeyPress(byte key)` - Return true if key is pressed.
+
+- `bool isKeyDown(byte key)` - Return true if key is down.
+
+- `bool isKeyUp(byte key)` - Return true if key is up.
 
 
 ## Example
@@ -51,7 +56,7 @@ void loop()
 
     Serial.print("Key states: ");
     for (int i = 0; i < 16; ++i) {
-        if (ttp229.isKeyPressed(i)) {
+        if (ttp229.isKeyPress(i)) {
             Serial.print("1 ");
         } else {
             Serial.print("0 ");
@@ -60,8 +65,16 @@ void loop()
 
     int key = ttp229.getKey();
     Serial.print("Pressed key: ");
-    Serial.println(key);
+    Serial.print(key);
 
+    Serial.print("   ");
+    if (ttp229.isKeyDown(0)) {
+        Serial.print("Key 0 is down");
+    } else if (ttp229.isKeyUp(0)) {
+        Serial.print("Key 0 is up");
+    }
+
+    Serial.println();
     delay(500);
 }
 ```

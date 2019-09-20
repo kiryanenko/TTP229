@@ -28,6 +28,7 @@
 class TTP229 {
     uint8_t _address;
     uint16_t _keys = 0;
+    uint16_t _prev_state = 0;
 
 public:
     /// Constructor
@@ -46,7 +47,15 @@ public:
     /// Return true if key is pressed
     /// \param key Number of key
     /// \return True if key is pressed
-    bool isKeyPressed(byte key);
+    bool isKeyPress(byte key);
+    /// Return true if key is pressed
+    /// \param key Number of key
+    /// \return True if key is pressed
+    bool isKeyDown(byte key);
+    /// Return true if key is pressed
+    /// \param key Number of key
+    /// \return True if key is pressed
+    bool isKeyUp(byte key);
 };
 
 

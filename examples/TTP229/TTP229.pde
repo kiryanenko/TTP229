@@ -34,7 +34,7 @@ void loop()
 
     Serial.print("Key states: ");
     for (int i = 0; i < 16; ++i) {
-        if (ttp229.isKeyPressed(i)) {
+        if (ttp229.isKeyPress(i)) {
             Serial.print("1 ");
         } else {
             Serial.print("0 ");
@@ -43,7 +43,15 @@ void loop()
 
     int key = ttp229.getKey();
     Serial.print("Pressed key: ");
-    Serial.println(key);
+    Serial.print(key);
 
+    Serial.print("   ");
+    if (ttp229.isKeyDown(0)) {
+        Serial.print("Key 0 is down");
+    } else if (ttp229.isKeyUp(0)) {
+        Serial.print("Key 0 is up");
+    }
+
+    Serial.println();
     delay(500);
 }

@@ -15,6 +15,7 @@ byte reverseBits(byte number) {
 
 
 uint16_t TTP229::readKeys() {
+    _prev_state = _keys;
     _keys = 0;
     Wire.requestFrom(_address, (uint8_t) 2);
     byte *buffer = (byte*) &_keys;
@@ -38,6 +39,14 @@ int TTP229::getKey() {
     return -1;
 }
 
-bool TTP229::isKeyPressed(byte key) {
+bool TTP229::isKeyPress(byte key) {
     return bitRead(_keys, key);
+}
+
+bool TTP229::isKeyDown(byte key) {
+    return !bitRead(_prev_state, key) && bitRead(_keys, key);
+}
+
+bool TTP229::isKeyUp(byte key) {
+    return bitRead(_prev_state, key) && !bitRead(_keys, key);
 }
