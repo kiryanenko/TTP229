@@ -20,6 +20,10 @@ Tested with the Robotdyn 16 Keys I2C Capacitive Touch TTP229 Module Robotdyn Cap
     - SDA <-> 2 (SDA)
     - SCL <-> 3 (SCL)
 
+- ESP32-WROOM-32:
+    - SDA <-> GPIO 21 (SDA)
+    - SCL <-> GPIO 22 (SCL)
+
 
 ## Methods:
 
